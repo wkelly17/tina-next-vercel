@@ -1,0 +1,22 @@
+fragment PageParts on Page {
+  __typename
+  title
+  draft
+  body
+  localize
+  created
+  lastUpdated
+  sha256
+}
+
+fragment LocalesParts on Locales {
+  __typename
+  locales {
+    __typename
+    code
+    name
+    nativeName
+    direction
+    flag
+  }
+}

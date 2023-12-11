@@ -1,0 +1,46 @@
+{
+  "name": "tina-next-vercel",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "build": "tinacms build && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "setup:users": "tinacms-next-auth setup"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.470.0",
+    "@azure/msal-node": "^2.6.0",
+    "@mdx-js/loader": "^3.0.0",
+    "@mdx-js/react": "^3.0.0",
+    "@next/mdx": "^14.0.4",
+    "@tinacms/datalayer": "^1.2.32",
+    "@types/mdx": "^2.0.10",
+    "jose": "^5.1.3",
+    "mdast-util-from-markdown": "^2.0.0",
+    "next": "14.0.4",
+    "next-auth": "^4.24.5",
+    "next-mdx-remote": "^4.4.1",
+    "react": "^18",
+    "react-dom": "^18",
+    "sanitize-html": "^2.11.0",
+    "tinacms": "^1.5.28",
+    "tinacms-authjs": "^1.0.5",
+    "tinacms-gitprovider-github": "^1.0.3",
+    "upstash-redis-level": "^1.1.1"
+  },
+  "devDependencies": {
+    "@tinacms/cli": "^1.5.39",
+    "@types/node": "^20.10.4",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/sanitize-html": "^2.9.5",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "postcss": "^8",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^5"
+  }
+}

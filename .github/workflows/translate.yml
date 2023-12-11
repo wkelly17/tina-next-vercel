@@ -1,0 +1,64 @@
+name: Translate
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "site/**"
+
+jobs:
+  run-my-action:
+    name: start Translation
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - name: Install dependencies and build
+        run: |
+          cd translate &&
+          npm ci &&
+          npm run build
+      # todo: see if I can make this an artificat?
+      - name: Save git diff result
+        id: save-git-diff
+        run: |
+          git --no-pager diff --unified=0 HEAD^ HEAD > $GITHUB_WORKSPACE/diff.txt
+      - uses: ./translate
+        env:
+          NODE_ENV: CI
+        with:
+          # todo: move to 1p cli for actual prod?
+          deepLKey: ${{ secrets.DEEPLKEY }}
+          prevDiffPath: ${{ github.workspace }}/diff.txt
+      - name: remove Diff from workspace
+        run: |
+          rm $GITHUB_WORKSPACE/diff.txt
+      - name: setup git config
+        run: |
+          git config user.name "Translation Bot"
+          git config user.email "<>"
+      - name: Check for changes
+        id: check_changes
+        run: |
+          if [[ `git status --porcelain` ]]; then
+          echo "changes=true" >> "$GITHUB_OUTPUT"
+          else
+          echo "changes=false" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Process changes
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git add .
+          git commit -m "Auto updating text file"
+          git fetch
+          git push

@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+}
+a {
+  color: blue;
+}
+
+a:is(:hover, :focus) {
+  text-decoration: underline;
+}
