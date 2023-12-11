@@ -1,0 +1,13 @@
+name: "Wattr"
+description: "Translate the Biel Site"
+author: "Wk"
+
+runs:
+  using: "node20"
+  main: "dist/index.js"
+inputs:
+  deepLKey:
+    description: "DeepL Api Key"
+    required: false
+  prevDiffPath:
+    description: "Diff from head and previous commit"
