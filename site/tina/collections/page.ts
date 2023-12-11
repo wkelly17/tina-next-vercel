@@ -7,7 +7,7 @@ import {richTextTemplates} from "../richTextTemplate";
 export const PageCollection: Collection = {
   name: "page",
   label: "Page",
-  path: "content",
+  path: "/content",
   match: {
     include: "**/pages/*",
   },

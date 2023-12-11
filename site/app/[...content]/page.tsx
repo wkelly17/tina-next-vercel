@@ -33,17 +33,22 @@ export async function generateStaticParams() {
 export default async function Page({params}: any) {
   // console.log({props});
   const {content} = params;
-  let relativePath = content.join("/") + ".mdx";
+  console.log({content});
+  let relativePath = decodeURIComponent(content.join("/")) + ".mdx";
+  console.log({relativePath});
   if (Array.isArray(content) && content.length == 1) {
-    relativePath = `${content[0].replaceAll("/", "")}/pages/home.mdx`; // fetch home, but url segment is chopped to just be /localeCode
+    relativePath = `${content[0]}/pages/home.mdx`; // fetch home, but url segment is chopped to just be /localeCode
+    console.log({relativePath});
   }
   const parts = relativePath.split("/");
   const localeCode = parts[0];
-  console.log({content});
+
   const res = await client.queries.page({relativePath: relativePath});
   const data = JSON.parse(JSON.stringify(res.data)) as PageQuery;
   // mutates
-  prefixInternalLinksWithLangCode(data.page.body, localeCode);
+  if (data?.page) {
+    prefixInternalLinksWithLangCode(data.page.body, localeCode);
+  }
   return (
     <div>
       <div>

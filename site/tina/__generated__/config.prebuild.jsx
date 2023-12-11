@@ -267,7 +267,7 @@ var richTextTemplates = [
 var PageCollection = {
   name: "page",
   label: "Page",
-  path: "content",
+  path: "/content",
   match: {
     include: "**/pages/*"
   },
