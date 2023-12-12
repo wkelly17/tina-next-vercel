@@ -38,7 +38,7 @@ jobs:
           NODE_ENV: CI
         with:
           # todo: move to 1p cli for actual prod?
-          deepLKey: ${{ secrets.DEEPLKEY }}
+          deepLKey: ${{ secrets.DEEPL_API_KEY }}
           prevDiffPath: ${{ github.workspace }}/diff.txt
       - name: remove Diff from workspace
         run: |
