@@ -58,12 +58,14 @@ async function run() {
   const localesString = await fs.readFile(localesPath, {
     encoding: "utf-8",
   });
-  const localesJson = JSON.parse(localesString) as Array<localeType>;
-
-  const globber = await globCreate(`${rootDir}/site/content/**/en/*.mdx`);
+  const localesJson = JSON.parse(localesString);
+  const locales = localesJson.locales;
+  const globber = await globCreate(`${rootDir}/site/content/en/**/*.mdx`);
+  const menusGlobber = await globCreate(`${rootDir}/site/content/en/menus/*`);
 
   const translator = new deepl.Translator(deepLKey);
-  await handleMdx(globber, translator, localesJson);
+  await handleMdx(globber, translator, locales);
+  await handleMenus(menusGlobber, translator, locales);
 }
 async function handleMdx(
   englishMdx: Globber,
@@ -248,13 +250,14 @@ async function handleMenus(
       encoding: "utf-8",
     });
     const fileJson = JSON.parse(fileData) as {
-      links: any[];
-      linksSha256?: string;
+      menuLinks: any[];
+      sha256?: string;
     };
-    const currentSha = fileJson.linksSha256;
-    const calculatedSha = await getSha256(JSON.stringify(fileJson.links));
+    const keysToLocalize = ["label", "description"];
+    const currentSha = fileJson.sha256;
+    const calculatedSha = await getSha256(JSON.stringify(fileJson.menuLinks));
     let needsUpdating = calculatedSha !== currentSha;
-    fileJson.linksSha256 = calculatedSha;
+    fileJson.sha256 = calculatedSha;
     // write out new sha:
     await fs.writeFile(englishFile, JSON.stringify(fileJson));
     if (!needsUpdating) continue;
@@ -270,11 +273,57 @@ async function handleMenus(
       const dir = path.dirname(fileOutPath);
       await fs.mkdir(dir, {recursive: true});
       const langCopy = {...fileJson};
-      for await (const link of langCopy.links) {
+      await translateKeys(langCopy, targetLocale.code, keysToLocalize);
+      const outChecksum = createHash("sha256")
+        .update(JSON.stringify(langCopy.menuLinks), "utf-8")
+        .digest("hex");
+      langCopy.sha256 = outChecksum;
+      await fs.writeFile(fileOutPath, JSON.stringify(langCopy));
+    }
+    console.log("done with menus");
+
+    async function translateKeys(
+      obj: Record<any, any>,
+      locale: string,
+      keysToLocalize: string[]
+    ) {
+      if (obj instanceof Object) {
+        if (Array.isArray(obj)) {
+          for (let i = 0; i < obj.length; i++) {
+            await translateKeys(obj[i], locale, keysToLocalize); // Recursive call for array elements
+          }
+        } else {
+          for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+              if (typeof obj[key] === "object") {
+                await translateKeys(obj[key], locale, keysToLocalize); // Recursive call for objects
+              } else if (
+                typeof obj[key] === "string" &&
+                keysToLocalize.includes(key)
+              ) {
+                // Perform your translation logic here (assuming you have an async translation function)
+                const coercedLocale = locale as deepl.TargetLanguageCode;
+                try {
+                  const translatedVal = await translator.translateText(
+                    obj[key],
+                    "en",
+                    coercedLocale
+                  );
+                  if (!Array.isArray(translatedVal)) {
+                    obj[key] = translatedVal.text;
+                  }
+                } catch (error) {
+                  console.log(error);
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
 }
+
 run();
 
 async function manageFileSha(
