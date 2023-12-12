@@ -7,7 +7,7 @@ export class CustomAuthProvider extends AbstractAuthProvider {
   }
   async authenticate(props?: {}): Promise<any> {
     // Do any authentication here
-    const url = `${window.location.origin}/api/authenticate/login`;
+    const url = `${window.location.origin}/api/auth/login`;
     return window.location.replace(url);
   }
   async getToken() {

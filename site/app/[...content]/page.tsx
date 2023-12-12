@@ -4,27 +4,35 @@ import {PageQuery} from "@/tina/__generated__/types";
 import {prefixInternalLinksWithLangCode} from "@/utils/localizeLinks";
 import * as fs from "node:fs/promises";
 import path from "node:path";
+import locales from "@/siteConfig/locales.json";
+import {Footer} from "@components/Footer/footerServer";
+import {Header} from "@components/Menu";
 
 export async function generateStaticParams() {
-  const currentDir = process.cwd();
-  const contentDir = `${currentDir}/content`;
-
-  const pages = await fs.readdir(contentDir, {
-    encoding: "utf-8",
-    recursive: true,
-    withFileTypes: false,
+  const allPages = await client.queries.pageConnection({
+    filter: {
+      draft: {
+        eq: false,
+      },
+    },
   });
   let slugs = [];
-  for (const entry of pages) {
-    if (!entry.includes("pages/")) continue;
-    const parsed = path.parse(entry);
-    let fileName = `${parsed.dir}/${parsed.name}`;
-    if (parsed.name == "home") {
-      fileName = fileName.split("/")[0]; //the locale /en /es
+  if (allPages?.data.pageConnection.edges) {
+    for (const entry of allPages.data.pageConnection.edges) {
+      if (entry?.node?.id) {
+        // if (entry?.node?.id.includes("")) continue;
+        const parts = entry.node.id.split("content/");
+        const parsed = path.parse(entry?.node?.id);
+        let fileName = `${parts[0]}/${parsed.name}`; //locale/kebab-case-file
+        console.log({fileName});
+        if (parsed.name == "/home") {
+          fileName = parts[0]; //the locale /en /es
+        }
+        slugs.push({
+          content: [fileName],
+        });
+      }
     }
-    slugs.push({
-      content: [fileName],
-    });
   }
   return slugs;
 }
@@ -34,26 +42,47 @@ export default async function Page({params}: any) {
   // console.log({props});
   const {content} = params;
   console.log({content});
-  let relativePath = decodeURIComponent(content.join("/")) + ".mdx";
-  console.log({relativePath});
+  let relativePath: string = "";
+  relativePath = decodeURIComponent(content[0]) + ".mdx";
   if (Array.isArray(content) && content.length == 1) {
     relativePath = `${content[0]}/pages/home.mdx`; // fetch home, but url segment is chopped to just be /localeCode
     console.log({relativePath});
+  } else {
+    relativePath =
+      decodeURIComponent(`${content[0]}/pages/${content.slice(1).join("/")}`) +
+      ".mdx";
   }
+
+  const isHomePage = relativePath.includes("home.mdx");
   const parts = relativePath.split("/");
   const localeCode = parts[0];
-
+  const localeOb = locales.locales.find((l) => l.code === localeCode);
   const res = await client.queries.page({relativePath: relativePath});
+  // https://github.com/vercel/next.js/issues/47447
   const data = JSON.parse(JSON.stringify(res.data)) as PageQuery;
-  // mutates
+  // mutates the data.page in place on tree
   if (data?.page) {
     prefixInternalLinksWithLangCode(data.page.body, localeCode);
   }
+  const footerPath = `${localeCode}/partials/footer.mdx`;
+  const footer = await client.queries.partials({
+    relativePath: footerPath,
+  });
+
+  const menuPath = `${localeCode}/menus/header.json`;
+  const menuData = await client.queries.headerMenu({relativePath: menuPath});
   return (
     <div>
       <div>
-        <PageServer data={data} query={res.query} variables={res.variables} />
+        <Header
+          headerMenu={JSON.parse(JSON.stringify(menuData.data))}
+          logo="/assets/WA-Logo-Horiz-4C-Sm.webp"
+          lang={localeCode}
+        />
+        <PageServer data={JSON.parse(JSON.stringify(data))} />
+        {/* <svg dangerouslySetInnerHTML={{__html: localeOb?.flag}} /> */}
       </div>
+      <Footer data={JSON.parse(JSON.stringify(footer.data))} />
       {/* <hr />
       <h1>DEBUG INFO</h1>
       <div>
@@ -78,6 +107,14 @@ port auth
 traverse the tree to localize all non fully  qualified urls to prepend with locale code. 
 try generateStaticParams on content
 TEST BUILD HERE
+
+Home page collection: (scratch)
+Edit "page collectio template?" (e.g, template of max-width 85ch and own template) 
+Default Row of (270px) autofit? or md:grid?
+Add menu to collections
+TEST BUILD HERE
+other tina config (partials? skip)
+Do footer
 
 localization gha
 note that we can use fs + next remote markdown for remote markdown

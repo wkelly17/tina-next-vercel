@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "TINA_PUBLIC_IS_LOCAL=true tinacms dev -c \"next dev\"",
+    "jt": "TINA_PUBLIC_IS_LOCAL=true tinacms dev",
     "build": "tinacms build && next build",
     "start": "next start",
     "lint": "next lint",
@@ -25,6 +26,7 @@
     "react": "^18",
     "react-dom": "^18",
     "sanitize-html": "^2.11.0",
+    "sharp": "^0.33.0",
     "tinacms": "^1.5.28",
     "tinacms-authjs": "^1.0.5",
     "tinacms-gitprovider-github": "^1.0.3",

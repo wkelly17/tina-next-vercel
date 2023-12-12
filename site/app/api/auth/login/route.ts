@@ -13,9 +13,10 @@ export async function GET(request: NextRequest) {
     request: request,
     cookieManager: cookieManager,
   });
-  if (!redirectUrl)
+  if (!redirectUrl) {
     return new Response(null, {
       status: 500,
     });
+  }
   return redirect(redirectUrl);
 }

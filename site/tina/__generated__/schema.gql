@@ -57,11 +57,17 @@ type Query {
   pageConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PageFilter): PageConnection!
   locales(relativePath: String): Locales!
   localesConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: LocalesFilter): LocalesConnection!
+  partials(relativePath: String): Partials!
+  partialsConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: PartialsFilter): PartialsConnection!
+  headerMenu(relativePath: String): HeaderMenu!
+  headerMenuConnection(before: String, after: String, first: Float, last: Float, sort: String, filter: HeaderMenuFilter): HeaderMenuConnection!
 }
 
 input DocumentFilter {
   page: PageFilter
   locales: LocalesFilter
+  partials: PartialsFilter
+  headerMenu: HeaderMenuFilter
 }
 
 type DocumentConnectionEdges {
@@ -87,7 +93,7 @@ type Collection {
   documents(before: String, after: String, first: Float, last: Float, sort: String, filter: DocumentFilter, folder: String): DocumentConnection!
 }
 
-union DocumentNode = Page | Locales | Folder
+union DocumentNode = Page | Locales | Partials | HeaderMenu | Folder
 
 type Page implements Node & Document {
   title: String
@@ -120,130 +126,130 @@ input RichTextFilter {
   exists: Boolean
 }
 
-input PageBodyGridChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentGridChildrenGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenGridChildrenGridChildrenColumnFilter {
+input PartialsContentGridChildrenGridChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenGridChildrenGridChildrenFilter {
-  Grid: PageBodyGridChildrenGridChildrenGridChildrenGridFilter
-  Column: PageBodyGridChildrenGridChildrenGridChildrenColumnFilter
+input PartialsContentGridChildrenGridChildrenGridChildrenFilter {
+  Grid: PartialsContentGridChildrenGridChildrenGridChildrenGridFilter
+  Column: PartialsContentGridChildrenGridChildrenGridChildrenColumnFilter
 }
 
-input PageBodyGridChildrenGridChildrenGridFilter {
+input PartialsContentGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyGridChildrenGridChildrenGridChildrenFilter
+  children: PartialsContentGridChildrenGridChildrenGridChildrenFilter
 }
 
-input PageBodyGridChildrenGridChildrenColumnChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyGridChildrenGridChildrenColumnChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyGridChildrenGridChildrenColumnChildrenFilter {
-  Grid: PageBodyGridChildrenGridChildrenColumnChildrenGridFilter
-  Column: PageBodyGridChildrenGridChildrenColumnChildrenColumnFilter
-}
-
-input PageBodyGridChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyGridChildrenGridChildrenColumnChildrenFilter
-}
-
-input PageBodyGridChildrenGridChildrenFilter {
-  Grid: PageBodyGridChildrenGridChildrenGridFilter
-  Column: PageBodyGridChildrenGridChildrenColumnFilter
-}
-
-input PageBodyGridChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyGridChildrenGridChildrenFilter
-}
-
-input PageBodyGridChildrenColumnChildrenGridChildrenGridFilter {
+input PartialsContentGridChildrenGridChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenColumnChildrenGridChildrenColumnFilter {
+input PartialsContentGridChildrenGridChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenColumnChildrenGridChildrenFilter {
-  Grid: PageBodyGridChildrenColumnChildrenGridChildrenGridFilter
-  Column: PageBodyGridChildrenColumnChildrenGridChildrenColumnFilter
+input PartialsContentGridChildrenGridChildrenColumnChildrenFilter {
+  Grid: PartialsContentGridChildrenGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentGridChildrenGridChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyGridChildrenColumnChildrenGridFilter {
+input PartialsContentGridChildrenGridChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentGridChildrenGridChildrenColumnChildrenFilter
+}
+
+input PartialsContentGridChildrenGridChildrenFilter {
+  Grid: PartialsContentGridChildrenGridChildrenGridFilter
+  Column: PartialsContentGridChildrenGridChildrenColumnFilter
+}
+
+input PartialsContentGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyGridChildrenColumnChildrenGridChildrenFilter
+  children: PartialsContentGridChildrenGridChildrenFilter
 }
 
-input PageBodyGridChildrenColumnChildrenColumnChildrenGridFilter {
+input PartialsContentGridChildrenColumnChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenColumnChildrenColumnChildrenColumnFilter {
+input PartialsContentGridChildrenColumnChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyGridChildrenColumnChildrenColumnChildrenFilter {
-  Grid: PageBodyGridChildrenColumnChildrenColumnChildrenGridFilter
-  Column: PageBodyGridChildrenColumnChildrenColumnChildrenColumnFilter
+input PartialsContentGridChildrenColumnChildrenGridChildrenFilter {
+  Grid: PartialsContentGridChildrenColumnChildrenGridChildrenGridFilter
+  Column: PartialsContentGridChildrenColumnChildrenGridChildrenColumnFilter
 }
 
-input PageBodyGridChildrenColumnChildrenColumnFilter {
+input PartialsContentGridChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentGridChildrenColumnChildrenGridChildrenFilter
+}
+
+input PartialsContentGridChildrenColumnChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentGridChildrenColumnChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyGridChildrenColumnChildrenColumnChildrenFilter
+  children: RichTextFilter
 }
 
-input PageBodyGridChildrenColumnChildrenFilter {
-  Grid: PageBodyGridChildrenColumnChildrenGridFilter
-  Column: PageBodyGridChildrenColumnChildrenColumnFilter
+input PartialsContentGridChildrenColumnChildrenColumnChildrenFilter {
+  Grid: PartialsContentGridChildrenColumnChildrenColumnChildrenGridFilter
+  Column: PartialsContentGridChildrenColumnChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyGridChildrenColumnFilter {
+input PartialsContentGridChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyGridChildrenColumnChildrenFilter
+  children: PartialsContentGridChildrenColumnChildrenColumnChildrenFilter
+}
+
+input PartialsContentGridChildrenColumnChildrenFilter {
+  Grid: PartialsContentGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentGridChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentGridChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentGridChildrenColumnChildrenFilter
 }
 
 input PageBodyGridChildrenFilter {
-  Grid: PageBodyGridChildrenGridFilter
-  Column: PageBodyGridChildrenColumnFilter
+  Grid: PartialsContentGridChildrenGridFilter
+  Column: PartialsContentGridChildrenColumnFilter
 }
 
 input PageBodyGridFilter {
@@ -253,130 +259,130 @@ input PageBodyGridFilter {
   children: PageBodyGridChildrenFilter
 }
 
-input PageBodyColumnChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentColumnChildrenGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenGridChildrenGridChildrenBoxFilter {
+input PartialsContentColumnChildrenGridChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenGridChildrenGridChildrenFilter {
-  Grid: PageBodyColumnChildrenGridChildrenGridChildrenGridFilter
-  Box: PageBodyColumnChildrenGridChildrenGridChildrenBoxFilter
+input PartialsContentColumnChildrenGridChildrenGridChildrenFilter {
+  Grid: PartialsContentColumnChildrenGridChildrenGridChildrenGridFilter
+  Box: PartialsContentColumnChildrenGridChildrenGridChildrenBoxFilter
 }
 
-input PageBodyColumnChildrenGridChildrenGridFilter {
+input PartialsContentColumnChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyColumnChildrenGridChildrenGridChildrenFilter
+  children: PartialsContentColumnChildrenGridChildrenGridChildrenFilter
 }
 
-input PageBodyColumnChildrenGridChildrenBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyColumnChildrenGridChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyColumnChildrenGridChildrenBoxChildrenFilter {
-  Grid: PageBodyColumnChildrenGridChildrenBoxChildrenGridFilter
-  Box: PageBodyColumnChildrenGridChildrenBoxChildrenBoxFilter
-}
-
-input PageBodyColumnChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyColumnChildrenGridChildrenBoxChildrenFilter
-}
-
-input PageBodyColumnChildrenGridChildrenFilter {
-  Grid: PageBodyColumnChildrenGridChildrenGridFilter
-  Box: PageBodyColumnChildrenGridChildrenBoxFilter
-}
-
-input PageBodyColumnChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyColumnChildrenGridChildrenFilter
-}
-
-input PageBodyColumnChildrenBoxChildrenGridChildrenGridFilter {
+input PartialsContentColumnChildrenGridChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenGridChildrenBoxFilter {
+input PartialsContentColumnChildrenGridChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenGridChildrenFilter {
-  Grid: PageBodyColumnChildrenBoxChildrenGridChildrenGridFilter
-  Box: PageBodyColumnChildrenBoxChildrenGridChildrenBoxFilter
+input PartialsContentColumnChildrenGridChildrenBoxChildrenFilter {
+  Grid: PartialsContentColumnChildrenGridChildrenBoxChildrenGridFilter
+  Box: PartialsContentColumnChildrenGridChildrenBoxChildrenBoxFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenGridFilter {
+input PartialsContentColumnChildrenGridChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentColumnChildrenGridChildrenBoxChildrenFilter
+}
+
+input PartialsContentColumnChildrenGridChildrenFilter {
+  Grid: PartialsContentColumnChildrenGridChildrenGridFilter
+  Box: PartialsContentColumnChildrenGridChildrenBoxFilter
+}
+
+input PartialsContentColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyColumnChildrenBoxChildrenGridChildrenFilter
+  children: PartialsContentColumnChildrenGridChildrenFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenBoxChildrenGridFilter {
+input PartialsContentColumnChildrenBoxChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentColumnChildrenBoxChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenBoxChildrenFilter {
-  Grid: PageBodyColumnChildrenBoxChildrenBoxChildrenGridFilter
-  Box: PageBodyColumnChildrenBoxChildrenBoxChildrenBoxFilter
+input PartialsContentColumnChildrenBoxChildrenGridChildrenFilter {
+  Grid: PartialsContentColumnChildrenBoxChildrenGridChildrenGridFilter
+  Box: PartialsContentColumnChildrenBoxChildrenGridChildrenBoxFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenBoxFilter {
+input PartialsContentColumnChildrenBoxChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentColumnChildrenBoxChildrenGridChildrenFilter
+}
+
+input PartialsContentColumnChildrenBoxChildrenBoxChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentColumnChildrenBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyColumnChildrenBoxChildrenBoxChildrenFilter
+  children: RichTextFilter
 }
 
-input PageBodyColumnChildrenBoxChildrenFilter {
-  Grid: PageBodyColumnChildrenBoxChildrenGridFilter
-  Box: PageBodyColumnChildrenBoxChildrenBoxFilter
+input PartialsContentColumnChildrenBoxChildrenBoxChildrenFilter {
+  Grid: PartialsContentColumnChildrenBoxChildrenBoxChildrenGridFilter
+  Box: PartialsContentColumnChildrenBoxChildrenBoxChildrenBoxFilter
 }
 
-input PageBodyColumnChildrenBoxFilter {
+input PartialsContentColumnChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyColumnChildrenBoxChildrenFilter
+  children: PartialsContentColumnChildrenBoxChildrenBoxChildrenFilter
+}
+
+input PartialsContentColumnChildrenBoxChildrenFilter {
+  Grid: PartialsContentColumnChildrenBoxChildrenGridFilter
+  Box: PartialsContentColumnChildrenBoxChildrenBoxFilter
+}
+
+input PartialsContentColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentColumnChildrenBoxChildrenFilter
 }
 
 input PageBodyColumnChildrenFilter {
-  Grid: PageBodyColumnChildrenGridFilter
-  Box: PageBodyColumnChildrenBoxFilter
+  Grid: PartialsContentColumnChildrenGridFilter
+  Box: PartialsContentColumnChildrenBoxFilter
 }
 
 input PageBodyColumnFilter {
@@ -385,1004 +391,1004 @@ input PageBodyColumnFilter {
   children: PageBodyColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenBoxChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenBoxFilter {
   class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenGridChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenGridChildrenColumnFilter {
   class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
+input PartialsContentBoxChildrenBoxChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: RichTextFilter
+  children: PartialsContentBoxChildrenBoxChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenColumnChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenBoxChildrenColumnChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenColumnChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenBoxChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyBoxChildrenBoxChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: RichTextFilter
+  children: PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridChildrenBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenBoxChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenBoxChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenBoxChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyBoxChildrenGridChildrenBoxChildrenFilter
+  children: PartialsContentBoxChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenBoxFilter {
   class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenGridChildrenFilter
+  children: PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenBoxChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenGridChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
-  children: PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter
+  children: PartialsContentBoxChildrenGridChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenBoxFilter {
   class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenGridChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenColumnChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: RichTextFilter
+  children: PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter
+  children: PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: RichTextFilter
+  children: PartialsContentBoxChildrenGridChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenBoxFilter {
-  class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenBoxFilter {
   class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenGridChildrenFilter
+  children: PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter
+input PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenColumnFilter {
   class: StringFilter
-  bgImage: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter {
+input PartialsContentBoxChildrenGridChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenGridChildrenColumnFilter {
   class: StringFilter
-  bgImage: StringFilter
-  children: RichTextFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenGridChildrenColumnChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter {
+input PartialsContentBoxChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenGridChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
-  children: RichTextFilter
+  children: PartialsContentBoxChildrenGridChildrenFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter {
-  class: StringFilter
-  colMaxWidth: StringFilter
-  children: RichTextFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenColumnChildrenGridFilter {
-  class: StringFilter
-  colMinWidth: StringFilter
-  colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter
-}
-
-input PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter {
   class: StringFilter
   bgImage: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter {
   class: StringFilter
   colMinWidth: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
   children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter
+  children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenColumnFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenColumnChildrenFilter
+  children: RichTextFilter
 }
 
-input PageBodyBoxChildrenColumnChildrenFilter {
-  Box: PageBodyBoxChildrenColumnChildrenBoxFilter
-  Grid: PageBodyBoxChildrenColumnChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnChildrenColumnFilter
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter
 }
 
-input PageBodyBoxChildrenColumnFilter {
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnFilter {
   class: StringFilter
   colMaxWidth: StringFilter
-  children: PageBodyBoxChildrenColumnChildrenFilter
+  children: PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenBoxChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenGridChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenGridChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: RichTextFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenColumnChildrenFilter {
+  Box: PartialsContentBoxChildrenColumnChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenColumnChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnChildrenColumnFilter
+}
+
+input PartialsContentBoxChildrenColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentBoxChildrenColumnChildrenFilter
 }
 
 input PageBodyBoxChildrenFilter {
-  Box: PageBodyBoxChildrenBoxFilter
-  Grid: PageBodyBoxChildrenGridFilter
-  Column: PageBodyBoxChildrenColumnFilter
+  Box: PartialsContentBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnFilter
 }
 
 input PageBodyBoxFilter {
@@ -1464,6 +1470,178 @@ type LocalesConnection implements Connection {
   edges: [LocalesConnectionEdges]
 }
 
+type Partials implements Node & Document {
+  name: String
+  content: JSON
+  sha256: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input PartialsContentGridChildrenFilter {
+  Grid: PartialsContentGridChildrenGridFilter
+  Column: PartialsContentGridChildrenColumnFilter
+}
+
+input PartialsContentGridFilter {
+  class: StringFilter
+  colMinWidth: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentGridChildrenFilter
+}
+
+input PartialsContentColumnChildrenFilter {
+  Grid: PartialsContentColumnChildrenGridFilter
+  Box: PartialsContentColumnChildrenBoxFilter
+}
+
+input PartialsContentColumnFilter {
+  class: StringFilter
+  colMaxWidth: StringFilter
+  children: PartialsContentColumnChildrenFilter
+}
+
+input PartialsContentBoxChildrenFilter {
+  Box: PartialsContentBoxChildrenBoxFilter
+  Grid: PartialsContentBoxChildrenGridFilter
+  Column: PartialsContentBoxChildrenColumnFilter
+}
+
+input PartialsContentBoxFilter {
+  class: StringFilter
+  bgImage: StringFilter
+  children: PartialsContentBoxChildrenFilter
+}
+
+input PartialsContentFilter {
+  Grid: PartialsContentGridFilter
+  Column: PartialsContentColumnFilter
+  Box: PartialsContentBoxFilter
+}
+
+input PartialsFilter {
+  name: StringFilter
+  content: PartialsContentFilter
+  sha256: StringFilter
+}
+
+type PartialsConnectionEdges {
+  cursor: String!
+  node: Partials
+}
+
+type PartialsConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [PartialsConnectionEdges]
+}
+
+type HeaderMenuMenuLinksSubmenuItemSubItem {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  description: String
+}
+
+type HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  description: String
+}
+
+type HeaderMenuMenuLinksSubmenuItemNestedMenu {
+  groupLabel: String
+  submenuChildren: [HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren]
+}
+
+type HeaderMenuMenuLinksSubmenuItem {
+  subItem: [HeaderMenuMenuLinksSubmenuItemSubItem]
+  nestedMenu: [HeaderMenuMenuLinksSubmenuItemNestedMenu]
+}
+
+type HeaderMenuMenuLinks {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  icon: String
+  description: String
+  submenuItem: HeaderMenuMenuLinksSubmenuItem
+}
+
+type HeaderMenu implements Node & Document {
+  logo: String
+  menuLinks: [HeaderMenuMenuLinks]
+  sha256: String
+  id: ID!
+  _sys: SystemInfo!
+  _values: JSON!
+}
+
+input ImageFilter {
+  startsWith: String
+  eq: String
+  exists: Boolean
+  in: [String]
+}
+
+input HeaderMenuMenuLinksSubmenuItemSubItemFilter {
+  url: StringFilter
+  isInteral: BooleanFilter
+  localize: BooleanFilter
+  label: StringFilter
+  description: StringFilter
+}
+
+input HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenFilter {
+  url: StringFilter
+  isInteral: BooleanFilter
+  localize: BooleanFilter
+  label: StringFilter
+  description: StringFilter
+}
+
+input HeaderMenuMenuLinksSubmenuItemNestedMenuFilter {
+  groupLabel: StringFilter
+  submenuChildren: HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenFilter
+}
+
+input HeaderMenuMenuLinksSubmenuItemFilter {
+  subItem: HeaderMenuMenuLinksSubmenuItemSubItemFilter
+  nestedMenu: HeaderMenuMenuLinksSubmenuItemNestedMenuFilter
+}
+
+input HeaderMenuMenuLinksFilter {
+  url: StringFilter
+  isInteral: BooleanFilter
+  localize: BooleanFilter
+  label: StringFilter
+  icon: StringFilter
+  description: StringFilter
+  submenuItem: HeaderMenuMenuLinksSubmenuItemFilter
+}
+
+input HeaderMenuFilter {
+  logo: ImageFilter
+  menuLinks: HeaderMenuMenuLinksFilter
+  sha256: StringFilter
+}
+
+type HeaderMenuConnectionEdges {
+  cursor: String!
+  node: HeaderMenu
+}
+
+type HeaderMenuConnection implements Connection {
+  pageInfo: PageInfo!
+  totalCount: Float!
+  edges: [HeaderMenuConnectionEdges]
+}
+
 type Mutation {
   addPendingDocument(collection: String!, relativePath: String!, template: String): DocumentNode!
   updateDocument(collection: String, relativePath: String!, params: DocumentUpdateMutation!): DocumentNode!
@@ -1473,17 +1651,25 @@ type Mutation {
   createPage(relativePath: String!, params: PageMutation!): Page!
   updateLocales(relativePath: String!, params: LocalesMutation!): Locales!
   createLocales(relativePath: String!, params: LocalesMutation!): Locales!
+  updatePartials(relativePath: String!, params: PartialsMutation!): Partials!
+  createPartials(relativePath: String!, params: PartialsMutation!): Partials!
+  updateHeaderMenu(relativePath: String!, params: HeaderMenuMutation!): HeaderMenu!
+  createHeaderMenu(relativePath: String!, params: HeaderMenuMutation!): HeaderMenu!
 }
 
 input DocumentUpdateMutation {
   page: PageMutation
   locales: LocalesMutation
+  partials: PartialsMutation
+  headerMenu: HeaderMenuMutation
   relativePath: String
 }
 
 input DocumentMutation {
   page: PageMutation
   locales: LocalesMutation
+  partials: PartialsMutation
+  headerMenu: HeaderMenuMutation
 }
 
 input PageMutation {
@@ -1506,6 +1692,54 @@ input LocalesLocalesMutation {
 
 input LocalesMutation {
   locales: [LocalesLocalesMutation]
+}
+
+input PartialsMutation {
+  name: String
+  content: JSON
+  sha256: String
+}
+
+input HeaderMenuMenuLinksSubmenuItemSubItemMutation {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  description: String
+}
+
+input HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenMutation {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  description: String
+}
+
+input HeaderMenuMenuLinksSubmenuItemNestedMenuMutation {
+  groupLabel: String
+  submenuChildren: [HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenMutation]
+}
+
+input HeaderMenuMenuLinksSubmenuItemMutation {
+  subItem: [HeaderMenuMenuLinksSubmenuItemSubItemMutation]
+  nestedMenu: [HeaderMenuMenuLinksSubmenuItemNestedMenuMutation]
+}
+
+input HeaderMenuMenuLinksMutation {
+  url: String
+  isInteral: Boolean
+  localize: Boolean
+  label: String
+  icon: String
+  description: String
+  submenuItem: HeaderMenuMenuLinksSubmenuItemMutation
+}
+
+input HeaderMenuMutation {
+  logo: String
+  menuLinks: [HeaderMenuMenuLinksMutation]
+  sha256: String
 }
 
 schema {

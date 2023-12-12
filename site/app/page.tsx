@@ -1,8 +1,31 @@
 import Image from "next/image";
-import * as fs from "fs";
-import {TinaMarkdown} from "tinacms/dist/rich-text";
+import {headers} from "next/headers";
+import locales from "@/siteConfig/locales.json";
+import {redirect} from "next/navigation";
 
 export default async function Home() {
+  const localesMap = locales.locales.map((l) => l.code);
+  const defaultLocale = "en";
+  const languages = headers()
+    .get("Accept-Language")
+    ?.split(",")
+    .map((l) => {
+      if (l.includes(";q")) {
+        let withoutWeight = l.split(";q");
+        return withoutWeight[0];
+      }
+      return l;
+    });
+  if (languages) {
+    for (const lang of languages) {
+      const match = localesMap.find((l) => l == lang);
+      if (match) {
+        return redirect(`/${match}`);
+      }
+    }
+    return redirect(defaultLocale);
+  }
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">

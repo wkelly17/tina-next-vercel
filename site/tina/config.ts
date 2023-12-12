@@ -6,6 +6,8 @@ import {defineConfig, LocalAuthProvider} from "tinacms";
 import {CustomAuthProvider} from "./authProviderConfig";
 import {PageCollection} from "./collections/page";
 import {LocalesCollection} from "./collections/locales";
+import {PartialCollection} from "./collections/partials";
+import {MenuCollection} from "./collections/menu";
 
 const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 
@@ -23,6 +25,11 @@ export default defineConfig({
     },
   },
   schema: {
-    collections: [PageCollection, LocalesCollection],
+    collections: [
+      PageCollection,
+      LocalesCollection,
+      PartialCollection,
+      MenuCollection,
+    ],
   },
 });

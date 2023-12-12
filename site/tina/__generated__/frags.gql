@@ -20,3 +20,48 @@ fragment LocalesParts on Locales {
     flag
   }
 }
+
+fragment PartialsParts on Partials {
+  __typename
+  name
+  content
+  sha256
+}
+
+fragment HeaderMenuParts on HeaderMenu {
+  __typename
+  logo
+  menuLinks {
+    __typename
+    url
+    isInteral
+    localize
+    label
+    icon
+    description
+    submenuItem {
+      __typename
+      subItem {
+        __typename
+        url
+        isInteral
+        localize
+        label
+        description
+      }
+      nestedMenu {
+        __typename
+        groupLabel
+        submenuChildren {
+          __typename
+          url
+          isInteral
+          localize
+          label
+          description
+        }
+      }
+    }
+  }
+  sha256
+}

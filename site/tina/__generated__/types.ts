@@ -85,6 +85,10 @@ export type Query = {
   pageConnection: PageConnection;
   locales: Locales;
   localesConnection: LocalesConnection;
+  partials: Partials;
+  partialsConnection: PartialsConnection;
+  headerMenu: HeaderMenu;
+  headerMenuConnection: HeaderMenuConnection;
 };
 
 
@@ -138,9 +142,41 @@ export type QueryLocalesConnectionArgs = {
   filter?: InputMaybe<LocalesFilter>;
 };
 
+
+export type QueryPartialsArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryPartialsConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PartialsFilter>;
+};
+
+
+export type QueryHeaderMenuArgs = {
+  relativePath?: InputMaybe<Scalars['String']['input']>;
+};
+
+
+export type QueryHeaderMenuConnectionArgs = {
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HeaderMenuFilter>;
+};
+
 export type DocumentFilter = {
   page?: InputMaybe<PageFilter>;
   locales?: InputMaybe<LocalesFilter>;
+  partials?: InputMaybe<PartialsFilter>;
+  headerMenu?: InputMaybe<HeaderMenuFilter>;
 };
 
 export type DocumentConnectionEdges = {
@@ -180,7 +216,7 @@ export type CollectionDocumentsArgs = {
   folder?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type DocumentNode = Page | Locales | Folder;
+export type DocumentNode = Page | Locales | Partials | HeaderMenu | Folder;
 
 export type Page = Node & Document & {
   __typename?: 'Page';
@@ -214,130 +250,130 @@ export type RichTextFilter = {
   exists?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type PageBodyGridChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentGridChildrenGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenGridChildrenGridChildrenColumnFilter = {
+export type PartialsContentGridChildrenGridChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenGridChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenGridChildrenGridChildrenColumnFilter>;
+export type PartialsContentGridChildrenGridChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenGridChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyGridChildrenGridChildrenGridFilter = {
+export type PartialsContentGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenGridChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyGridChildrenGridChildrenColumnChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyGridChildrenGridChildrenColumnChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyGridChildrenGridChildrenColumnChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenGridChildrenColumnChildrenColumnFilter>;
-};
-
-export type PageBodyGridChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenGridChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyGridChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyGridChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenGridChildrenFilter>;
-};
-
-export type PageBodyGridChildrenColumnChildrenGridChildrenGridFilter = {
+export type PartialsContentGridChildrenGridChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenGridChildrenColumnFilter = {
+export type PartialsContentGridChildrenGridChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenColumnChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenColumnChildrenGridChildrenColumnFilter>;
+export type PartialsContentGridChildrenGridChildrenColumnChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenGridChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenGridFilter = {
+export type PartialsContentGridChildrenGridChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenGridChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentGridChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenGridChildrenColumnFilter>;
+};
+
+export type PartialsContentGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenColumnChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenColumnChildrenGridFilter = {
+export type PartialsContentGridChildrenColumnChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenColumnChildrenColumnFilter = {
+export type PartialsContentGridChildrenColumnChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenColumnChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenColumnChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenColumnChildrenColumnChildrenColumnFilter>;
+export type PartialsContentGridChildrenColumnChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenColumnChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenColumnChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenColumnFilter = {
+export type PartialsContentGridChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenColumnChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentGridChildrenColumnChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentGridChildrenColumnChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenColumnChildrenColumnChildrenFilter>;
+  children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyGridChildrenColumnChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenColumnChildrenColumnFilter>;
+export type PartialsContentGridChildrenColumnChildrenColumnChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenColumnChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenColumnChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyGridChildrenColumnFilter = {
+export type PartialsContentGridChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyGridChildrenColumnChildrenFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenColumnChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentGridChildrenColumnChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentGridChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenColumnChildrenFilter>;
 };
 
 export type PageBodyGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyGridChildrenColumnFilter>;
+  Grid?: InputMaybe<PartialsContentGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenColumnFilter>;
 };
 
 export type PageBodyGridFilter = {
@@ -347,130 +383,130 @@ export type PageBodyGridFilter = {
   children?: InputMaybe<PageBodyGridChildrenFilter>;
 };
 
-export type PageBodyColumnChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentColumnChildrenGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenGridChildrenGridChildrenBoxFilter = {
+export type PartialsContentColumnChildrenGridChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenGridChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenGridChildrenGridChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenGridChildrenGridChildrenBoxFilter>;
+export type PartialsContentColumnChildrenGridChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenGridChildrenGridChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenGridChildrenGridChildrenBoxFilter>;
 };
 
-export type PageBodyColumnChildrenGridChildrenGridFilter = {
+export type PartialsContentColumnChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenGridChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyColumnChildrenGridChildrenBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyColumnChildrenGridChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyColumnChildrenGridChildrenBoxChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenGridChildrenBoxChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenGridChildrenBoxChildrenBoxFilter>;
-};
-
-export type PageBodyColumnChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenGridChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyColumnChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenGridChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenGridChildrenBoxFilter>;
-};
-
-export type PageBodyColumnChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenGridChildrenFilter>;
-};
-
-export type PageBodyColumnChildrenBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentColumnChildrenGridChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenGridChildrenBoxFilter = {
+export type PartialsContentColumnChildrenGridChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenGridChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenBoxChildrenGridChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenBoxChildrenGridChildrenBoxFilter>;
+export type PartialsContentColumnChildrenGridChildrenBoxChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenGridChildrenBoxChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenGridChildrenBoxChildrenBoxFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenGridFilter = {
+export type PartialsContentColumnChildrenGridChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenGridChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentColumnChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenGridChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenGridChildrenBoxFilter>;
+};
+
+export type PartialsContentColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenBoxChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenGridChildrenFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentColumnChildrenBoxChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentColumnChildrenBoxChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenBoxChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenBoxChildrenBoxChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenBoxChildrenBoxChildrenBoxFilter>;
+export type PartialsContentColumnChildrenBoxChildrenGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenBoxChildrenGridChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenBoxChildrenGridChildrenBoxFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenBoxFilter = {
+export type PartialsContentColumnChildrenBoxChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenBoxChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentColumnChildrenBoxChildrenBoxChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentColumnChildrenBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenBoxChildrenBoxChildrenFilter>;
+  children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyColumnChildrenBoxChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenBoxChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenBoxChildrenBoxFilter>;
+export type PartialsContentColumnChildrenBoxChildrenBoxChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenBoxChildrenBoxChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenBoxChildrenBoxChildrenBoxFilter>;
 };
 
-export type PageBodyColumnChildrenBoxFilter = {
+export type PartialsContentColumnChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyColumnChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenBoxChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentColumnChildrenBoxChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenBoxChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenBoxChildrenBoxFilter>;
+};
+
+export type PartialsContentColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenBoxChildrenFilter>;
 };
 
 export type PageBodyColumnChildrenFilter = {
-  Grid?: InputMaybe<PageBodyColumnChildrenGridFilter>;
-  Box?: InputMaybe<PageBodyColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentColumnChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenBoxFilter>;
 };
 
 export type PageBodyColumnFilter = {
@@ -479,1004 +515,1004 @@ export type PageBodyColumnFilter = {
   children?: InputMaybe<PageBodyColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenGridChildrenFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+export type PartialsContentBoxChildrenBoxChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenBoxChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenBoxChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenBoxChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenGridChildrenFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenGridChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenGridChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenBoxFilter = {
-  class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenGridChildrenFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenBoxChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter>;
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter = {
+export type PartialsContentBoxChildrenGridChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
-  bgImage?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter = {
+export type PartialsContentBoxChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenGridChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenGridChildrenFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<RichTextFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenGridFilter = {
-  class?: InputMaybe<StringFilter>;
-  colMinWidth?: InputMaybe<StringFilter>;
-  colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter>;
-};
-
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter = {
   class?: InputMaybe<StringFilter>;
   bgImage?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter = {
   class?: InputMaybe<StringFilter>;
   colMinWidth?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
   children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter>;
+  children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenColumnFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnChildrenFilter>;
+  children?: InputMaybe<RichTextFilter>;
 };
 
-export type PageBodyBoxChildrenColumnChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenColumnChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenColumnChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnChildrenColumnFilter>;
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenColumnFilter>;
 };
 
-export type PageBodyBoxChildrenColumnFilter = {
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnFilter = {
   class?: InputMaybe<StringFilter>;
   colMaxWidth?: InputMaybe<StringFilter>;
-  children?: InputMaybe<PageBodyBoxChildrenColumnChildrenFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenGridChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<RichTextFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenColumnChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenColumnChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxChildrenColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenColumnChildrenFilter>;
 };
 
 export type PageBodyBoxChildrenFilter = {
-  Box?: InputMaybe<PageBodyBoxChildrenBoxFilter>;
-  Grid?: InputMaybe<PageBodyBoxChildrenGridFilter>;
-  Column?: InputMaybe<PageBodyBoxChildrenColumnFilter>;
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnFilter>;
 };
 
 export type PageBodyBoxFilter = {
@@ -1564,6 +1600,189 @@ export type LocalesConnection = Connection & {
   edges?: Maybe<Array<Maybe<LocalesConnectionEdges>>>;
 };
 
+export type Partials = Node & Document & {
+  __typename?: 'Partials';
+  name?: Maybe<Scalars['String']['output']>;
+  content?: Maybe<Scalars['JSON']['output']>;
+  sha256?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type PartialsContentGridChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentGridChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentGridChildrenColumnFilter>;
+};
+
+export type PartialsContentGridFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMinWidth?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentGridChildrenFilter>;
+};
+
+export type PartialsContentColumnChildrenFilter = {
+  Grid?: InputMaybe<PartialsContentColumnChildrenGridFilter>;
+  Box?: InputMaybe<PartialsContentColumnChildrenBoxFilter>;
+};
+
+export type PartialsContentColumnFilter = {
+  class?: InputMaybe<StringFilter>;
+  colMaxWidth?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentColumnChildrenFilter>;
+};
+
+export type PartialsContentBoxChildrenFilter = {
+  Box?: InputMaybe<PartialsContentBoxChildrenBoxFilter>;
+  Grid?: InputMaybe<PartialsContentBoxChildrenGridFilter>;
+  Column?: InputMaybe<PartialsContentBoxChildrenColumnFilter>;
+};
+
+export type PartialsContentBoxFilter = {
+  class?: InputMaybe<StringFilter>;
+  bgImage?: InputMaybe<StringFilter>;
+  children?: InputMaybe<PartialsContentBoxChildrenFilter>;
+};
+
+export type PartialsContentFilter = {
+  Grid?: InputMaybe<PartialsContentGridFilter>;
+  Column?: InputMaybe<PartialsContentColumnFilter>;
+  Box?: InputMaybe<PartialsContentBoxFilter>;
+};
+
+export type PartialsFilter = {
+  name?: InputMaybe<StringFilter>;
+  content?: InputMaybe<PartialsContentFilter>;
+  sha256?: InputMaybe<StringFilter>;
+};
+
+export type PartialsConnectionEdges = {
+  __typename?: 'PartialsConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<Partials>;
+};
+
+export type PartialsConnection = Connection & {
+  __typename?: 'PartialsConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<PartialsConnectionEdges>>>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemSubItem = {
+  __typename?: 'HeaderMenuMenuLinksSubmenuItemSubItem';
+  url?: Maybe<Scalars['String']['output']>;
+  isInteral?: Maybe<Scalars['Boolean']['output']>;
+  localize?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren = {
+  __typename?: 'HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren';
+  url?: Maybe<Scalars['String']['output']>;
+  isInteral?: Maybe<Scalars['Boolean']['output']>;
+  localize?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenu = {
+  __typename?: 'HeaderMenuMenuLinksSubmenuItemNestedMenu';
+  groupLabel?: Maybe<Scalars['String']['output']>;
+  submenuChildren?: Maybe<Array<Maybe<HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren>>>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItem = {
+  __typename?: 'HeaderMenuMenuLinksSubmenuItem';
+  subItem?: Maybe<Array<Maybe<HeaderMenuMenuLinksSubmenuItemSubItem>>>;
+  nestedMenu?: Maybe<Array<Maybe<HeaderMenuMenuLinksSubmenuItemNestedMenu>>>;
+};
+
+export type HeaderMenuMenuLinks = {
+  __typename?: 'HeaderMenuMenuLinks';
+  url?: Maybe<Scalars['String']['output']>;
+  isInteral?: Maybe<Scalars['Boolean']['output']>;
+  localize?: Maybe<Scalars['Boolean']['output']>;
+  label?: Maybe<Scalars['String']['output']>;
+  icon?: Maybe<Scalars['String']['output']>;
+  description?: Maybe<Scalars['String']['output']>;
+  submenuItem?: Maybe<HeaderMenuMenuLinksSubmenuItem>;
+};
+
+export type HeaderMenu = Node & Document & {
+  __typename?: 'HeaderMenu';
+  logo?: Maybe<Scalars['String']['output']>;
+  menuLinks?: Maybe<Array<Maybe<HeaderMenuMenuLinks>>>;
+  sha256?: Maybe<Scalars['String']['output']>;
+  id: Scalars['ID']['output'];
+  _sys: SystemInfo;
+  _values: Scalars['JSON']['output'];
+};
+
+export type ImageFilter = {
+  startsWith?: InputMaybe<Scalars['String']['input']>;
+  eq?: InputMaybe<Scalars['String']['input']>;
+  exists?: InputMaybe<Scalars['Boolean']['input']>;
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemSubItemFilter = {
+  url?: InputMaybe<StringFilter>;
+  isInteral?: InputMaybe<BooleanFilter>;
+  localize?: InputMaybe<BooleanFilter>;
+  label?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenFilter = {
+  url?: InputMaybe<StringFilter>;
+  isInteral?: InputMaybe<BooleanFilter>;
+  localize?: InputMaybe<BooleanFilter>;
+  label?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenuFilter = {
+  groupLabel?: InputMaybe<StringFilter>;
+  submenuChildren?: InputMaybe<HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenFilter>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemFilter = {
+  subItem?: InputMaybe<HeaderMenuMenuLinksSubmenuItemSubItemFilter>;
+  nestedMenu?: InputMaybe<HeaderMenuMenuLinksSubmenuItemNestedMenuFilter>;
+};
+
+export type HeaderMenuMenuLinksFilter = {
+  url?: InputMaybe<StringFilter>;
+  isInteral?: InputMaybe<BooleanFilter>;
+  localize?: InputMaybe<BooleanFilter>;
+  label?: InputMaybe<StringFilter>;
+  icon?: InputMaybe<StringFilter>;
+  description?: InputMaybe<StringFilter>;
+  submenuItem?: InputMaybe<HeaderMenuMenuLinksSubmenuItemFilter>;
+};
+
+export type HeaderMenuFilter = {
+  logo?: InputMaybe<ImageFilter>;
+  menuLinks?: InputMaybe<HeaderMenuMenuLinksFilter>;
+  sha256?: InputMaybe<StringFilter>;
+};
+
+export type HeaderMenuConnectionEdges = {
+  __typename?: 'HeaderMenuConnectionEdges';
+  cursor: Scalars['String']['output'];
+  node?: Maybe<HeaderMenu>;
+};
+
+export type HeaderMenuConnection = Connection & {
+  __typename?: 'HeaderMenuConnection';
+  pageInfo: PageInfo;
+  totalCount: Scalars['Float']['output'];
+  edges?: Maybe<Array<Maybe<HeaderMenuConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -1574,6 +1793,10 @@ export type Mutation = {
   createPage: Page;
   updateLocales: Locales;
   createLocales: Locales;
+  updatePartials: Partials;
+  createPartials: Partials;
+  updateHeaderMenu: HeaderMenu;
+  createHeaderMenu: HeaderMenu;
 };
 
 
@@ -1627,15 +1850,43 @@ export type MutationCreateLocalesArgs = {
   params: LocalesMutation;
 };
 
+
+export type MutationUpdatePartialsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PartialsMutation;
+};
+
+
+export type MutationCreatePartialsArgs = {
+  relativePath: Scalars['String']['input'];
+  params: PartialsMutation;
+};
+
+
+export type MutationUpdateHeaderMenuArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HeaderMenuMutation;
+};
+
+
+export type MutationCreateHeaderMenuArgs = {
+  relativePath: Scalars['String']['input'];
+  params: HeaderMenuMutation;
+};
+
 export type DocumentUpdateMutation = {
   page?: InputMaybe<PageMutation>;
   locales?: InputMaybe<LocalesMutation>;
+  partials?: InputMaybe<PartialsMutation>;
+  headerMenu?: InputMaybe<HeaderMenuMutation>;
   relativePath?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
   locales?: InputMaybe<LocalesMutation>;
+  partials?: InputMaybe<PartialsMutation>;
+  headerMenu?: InputMaybe<HeaderMenuMutation>;
 };
 
 export type PageMutation = {
@@ -1660,9 +1911,61 @@ export type LocalesMutation = {
   locales?: InputMaybe<Array<InputMaybe<LocalesLocalesMutation>>>;
 };
 
+export type PartialsMutation = {
+  name?: InputMaybe<Scalars['String']['input']>;
+  content?: InputMaybe<Scalars['JSON']['input']>;
+  sha256?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemSubItemMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  isInteral?: InputMaybe<Scalars['Boolean']['input']>;
+  localize?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  isInteral?: InputMaybe<Scalars['Boolean']['input']>;
+  localize?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemNestedMenuMutation = {
+  groupLabel?: InputMaybe<Scalars['String']['input']>;
+  submenuChildren?: InputMaybe<Array<InputMaybe<HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildrenMutation>>>;
+};
+
+export type HeaderMenuMenuLinksSubmenuItemMutation = {
+  subItem?: InputMaybe<Array<InputMaybe<HeaderMenuMenuLinksSubmenuItemSubItemMutation>>>;
+  nestedMenu?: InputMaybe<Array<InputMaybe<HeaderMenuMenuLinksSubmenuItemNestedMenuMutation>>>;
+};
+
+export type HeaderMenuMenuLinksMutation = {
+  url?: InputMaybe<Scalars['String']['input']>;
+  isInteral?: InputMaybe<Scalars['Boolean']['input']>;
+  localize?: InputMaybe<Scalars['Boolean']['input']>;
+  label?: InputMaybe<Scalars['String']['input']>;
+  icon?: InputMaybe<Scalars['String']['input']>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  submenuItem?: InputMaybe<HeaderMenuMenuLinksSubmenuItemMutation>;
+};
+
+export type HeaderMenuMutation = {
+  logo?: InputMaybe<Scalars['String']['input']>;
+  menuLinks?: InputMaybe<Array<InputMaybe<HeaderMenuMenuLinksMutation>>>;
+  sha256?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type PagePartsFragment = { __typename: 'Page', title?: string | null, draft?: boolean | null, body?: any | null, localize?: boolean | null, created?: string | null, lastUpdated?: string | null, sha256?: string | null };
 
 export type LocalesPartsFragment = { __typename: 'Locales', locales?: Array<{ __typename: 'LocalesLocales', code: string, name: string, nativeName: string, direction: string, flag?: string | null } | null> | null };
+
+export type PartialsPartsFragment = { __typename: 'Partials', name?: string | null, content?: any | null, sha256?: string | null };
+
+export type HeaderMenuPartsFragment = { __typename: 'HeaderMenu', logo?: string | null, sha256?: string | null, menuLinks?: Array<{ __typename: 'HeaderMenuMenuLinks', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, icon?: string | null, description?: string | null, submenuItem?: { __typename: 'HeaderMenuMenuLinksSubmenuItem', subItem?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemSubItem', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null, nestedMenu?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenu', groupLabel?: string | null, submenuChildren?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null } | null> | null } | null } | null> | null };
 
 export type PageQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -1702,6 +2005,44 @@ export type LocalesConnectionQueryVariables = Exact<{
 
 export type LocalesConnectionQuery = { __typename?: 'Query', localesConnection: { __typename?: 'LocalesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'LocalesConnectionEdges', cursor: string, node?: { __typename: 'Locales', id: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, locales?: Array<{ __typename: 'LocalesLocales', code: string, name: string, nativeName: string, direction: string, flag?: string | null } | null> | null } | null } | null> | null } };
 
+export type PartialsQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type PartialsQuery = { __typename?: 'Query', partials: { __typename: 'Partials', id: string, name?: string | null, content?: any | null, sha256?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } };
+
+export type PartialsConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<PartialsFilter>;
+}>;
+
+
+export type PartialsConnectionQuery = { __typename?: 'Query', partialsConnection: { __typename?: 'PartialsConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PartialsConnectionEdges', cursor: string, node?: { __typename: 'Partials', id: string, name?: string | null, content?: any | null, sha256?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string } } | null } | null> | null } };
+
+export type HeaderMenuQueryVariables = Exact<{
+  relativePath: Scalars['String']['input'];
+}>;
+
+
+export type HeaderMenuQuery = { __typename?: 'Query', headerMenu: { __typename: 'HeaderMenu', id: string, logo?: string | null, sha256?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, menuLinks?: Array<{ __typename: 'HeaderMenuMenuLinks', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, icon?: string | null, description?: string | null, submenuItem?: { __typename: 'HeaderMenuMenuLinksSubmenuItem', subItem?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemSubItem', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null, nestedMenu?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenu', groupLabel?: string | null, submenuChildren?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null } | null> | null } | null } | null> | null } };
+
+export type HeaderMenuConnectionQueryVariables = Exact<{
+  before?: InputMaybe<Scalars['String']['input']>;
+  after?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Float']['input']>;
+  last?: InputMaybe<Scalars['Float']['input']>;
+  sort?: InputMaybe<Scalars['String']['input']>;
+  filter?: InputMaybe<HeaderMenuFilter>;
+}>;
+
+
+export type HeaderMenuConnectionQuery = { __typename?: 'Query', headerMenuConnection: { __typename?: 'HeaderMenuConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'HeaderMenuConnectionEdges', cursor: string, node?: { __typename: 'HeaderMenu', id: string, logo?: string | null, sha256?: string | null, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, menuLinks?: Array<{ __typename: 'HeaderMenuMenuLinks', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, icon?: string | null, description?: string | null, submenuItem?: { __typename: 'HeaderMenuMenuLinksSubmenuItem', subItem?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemSubItem', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null, nestedMenu?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenu', groupLabel?: string | null, submenuChildren?: Array<{ __typename: 'HeaderMenuMenuLinksSubmenuItemNestedMenuSubmenuChildren', url?: string | null, isInteral?: boolean | null, localize?: boolean | null, label?: string | null, description?: string | null } | null> | null } | null> | null } | null } | null> | null } | null } | null> | null } };
+
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
   __typename
@@ -1725,6 +2066,53 @@ export const LocalesPartsFragmentDoc = gql`
     direction
     flag
   }
+}
+    `;
+export const PartialsPartsFragmentDoc = gql`
+    fragment PartialsParts on Partials {
+  __typename
+  name
+  content
+  sha256
+}
+    `;
+export const HeaderMenuPartsFragmentDoc = gql`
+    fragment HeaderMenuParts on HeaderMenu {
+  __typename
+  logo
+  menuLinks {
+    __typename
+    url
+    isInteral
+    localize
+    label
+    icon
+    description
+    submenuItem {
+      __typename
+      subItem {
+        __typename
+        url
+        isInteral
+        localize
+        label
+        description
+      }
+      nestedMenu {
+        __typename
+        groupLabel
+        submenuChildren {
+          __typename
+          url
+          isInteral
+          localize
+          label
+          description
+        }
+      }
+    }
+  }
+  sha256
 }
     `;
 export const PageDocument = gql`
@@ -1837,6 +2225,116 @@ export const LocalesConnectionDocument = gql`
   }
 }
     ${LocalesPartsFragmentDoc}`;
+export const PartialsDocument = gql`
+    query partials($relativePath: String!) {
+  partials(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...PartialsParts
+  }
+}
+    ${PartialsPartsFragmentDoc}`;
+export const PartialsConnectionDocument = gql`
+    query partialsConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: PartialsFilter) {
+  partialsConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...PartialsParts
+      }
+    }
+  }
+}
+    ${PartialsPartsFragmentDoc}`;
+export const HeaderMenuDocument = gql`
+    query headerMenu($relativePath: String!) {
+  headerMenu(relativePath: $relativePath) {
+    ... on Document {
+      _sys {
+        filename
+        basename
+        breadcrumbs
+        path
+        relativePath
+        extension
+      }
+      id
+    }
+    ...HeaderMenuParts
+  }
+}
+    ${HeaderMenuPartsFragmentDoc}`;
+export const HeaderMenuConnectionDocument = gql`
+    query headerMenuConnection($before: String, $after: String, $first: Float, $last: Float, $sort: String, $filter: HeaderMenuFilter) {
+  headerMenuConnection(
+    before: $before
+    after: $after
+    first: $first
+    last: $last
+    sort: $sort
+    filter: $filter
+  ) {
+    pageInfo {
+      hasPreviousPage
+      hasNextPage
+      startCursor
+      endCursor
+    }
+    totalCount
+    edges {
+      cursor
+      node {
+        ... on Document {
+          _sys {
+            filename
+            basename
+            breadcrumbs
+            path
+            relativePath
+            extension
+          }
+          id
+        }
+        ...HeaderMenuParts
+      }
+    }
+  }
+}
+    ${HeaderMenuPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -1851,6 +2349,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     localesConnection(variables?: LocalesConnectionQueryVariables, options?: C): Promise<{data: LocalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LocalesConnectionQueryVariables, query: string}> {
         return requester<{data: LocalesConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: LocalesConnectionQueryVariables, query: string}, LocalesConnectionQueryVariables>(LocalesConnectionDocument, variables, options);
+      },
+    partials(variables: PartialsQueryVariables, options?: C): Promise<{data: PartialsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PartialsQueryVariables, query: string}> {
+        return requester<{data: PartialsQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PartialsQueryVariables, query: string}, PartialsQueryVariables>(PartialsDocument, variables, options);
+      },
+    partialsConnection(variables?: PartialsConnectionQueryVariables, options?: C): Promise<{data: PartialsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PartialsConnectionQueryVariables, query: string}> {
+        return requester<{data: PartialsConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: PartialsConnectionQueryVariables, query: string}, PartialsConnectionQueryVariables>(PartialsConnectionDocument, variables, options);
+      },
+    headerMenu(variables: HeaderMenuQueryVariables, options?: C): Promise<{data: HeaderMenuQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeaderMenuQueryVariables, query: string}> {
+        return requester<{data: HeaderMenuQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeaderMenuQueryVariables, query: string}, HeaderMenuQueryVariables>(HeaderMenuDocument, variables, options);
+      },
+    headerMenuConnection(variables?: HeaderMenuConnectionQueryVariables, options?: C): Promise<{data: HeaderMenuConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeaderMenuConnectionQueryVariables, query: string}> {
+        return requester<{data: HeaderMenuConnectionQuery, errors?: { message: string, locations: { line: number, column: number }[], path: string[] }[], variables: HeaderMenuConnectionQueryVariables, query: string}, HeaderMenuConnectionQueryVariables>(HeaderMenuConnectionDocument, variables, options);
       }
     };
   }

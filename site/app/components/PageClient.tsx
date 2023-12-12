@@ -15,9 +15,16 @@ export function PageClient(props: {
   const {data} = useTina(props);
 
   return (
-    <div className="contentWrap min-h-screen">
+    <div
+      className="contentWrap min-h-screen"
+      data-tina-field={tinaField(data, "page")}
+    >
       {/* {!props.isHomePage && <PageTitle title={data.page.title} />} */}
-      <TMarkDown content={data.page?.body} />
+      {data?.page?.body ? (
+        <TMarkDown content={data.page?.body} />
+      ) : (
+        "FETCH FAILED"
+      )}
     </div>
   );
 }

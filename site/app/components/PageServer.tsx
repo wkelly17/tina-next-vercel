@@ -4,11 +4,7 @@ import {TMarkDown} from "./TinaMarkdown";
 
 // import { tinaField, useTina } from "tinacms/dist/react";
 
-export function PageServer(props: {
-  data: PageQuery;
-  variables: object;
-  query: string;
-}) {
+export function PageServer(props: {data: PageQuery}) {
   // const { data } = useTina(props);
   const data = props.data;
   return (

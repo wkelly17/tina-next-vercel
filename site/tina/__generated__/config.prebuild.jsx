@@ -78,7 +78,7 @@ var CustomAuthProvider = class extends AbstractAuthProvider {
     super();
   }
   async authenticate(props) {
-    const url = `${window.location.origin}/api/authenticate/login`;
+    const url = `${window.location.origin}/api/auth/login`;
     return window.location.replace(url);
   }
   async getToken() {
@@ -267,7 +267,7 @@ var richTextTemplates = [
 var PageCollection = {
   name: "page",
   label: "Page",
-  path: "/content",
+  path: "content",
   match: {
     include: "**/pages/*"
   },
@@ -422,6 +422,276 @@ var LocalesCollection = {
   ]
 };
 
+// tina/collections/partials.ts
+var PartialCollection = {
+  name: "partials",
+  label: "Partials",
+  path: "content",
+  match: {
+    include: "**/partials/*"
+  },
+  defaultItem: () => {
+    return {
+      name: "Name of partial",
+      content: {
+        type: "root",
+        children: [
+          {
+            type: "p",
+            children: [
+              {
+                type: "text",
+                text: "Default Text"
+              }
+            ]
+          }
+        ]
+      },
+      filename: "/en/partials/partialName"
+    };
+  },
+  format: "mdx",
+  frontmatterFormat: "yaml",
+  fields: [
+    {
+      name: "name",
+      type: "string",
+      label: "Partial Name",
+      description: "For id purposes"
+    },
+    {
+      name: "content",
+      type: "rich-text",
+      label: "Partial content",
+      isBody: true,
+      templates: richTextTemplates,
+      parser: {
+        type: "mdx"
+      }
+    },
+    {
+      type: "string",
+      label: "sha256 hash",
+      name: "sha256",
+      description: "Generated programmatically. Used for automatic translation."
+    }
+  ]
+};
+
+// tina/collections/menu.ts
+var MenuCollection = {
+  name: "headerMenu",
+  label: "Header Nav",
+  path: "content",
+  match: {
+    include: "**/menus/*"
+  },
+  format: "json",
+  fields: [
+    {
+      name: "logo",
+      label: "Logo",
+      type: "image",
+      ui: {
+        // is called on every form change but result is stored in data and not in the form value (saved to file but not displayed to the user)
+        parse: (val) => {
+          if ("src" in val) {
+            return val.src;
+          } else {
+            return val;
+          }
+        }
+      }
+    },
+    {
+      name: "menuLinks",
+      label: "Menu Links",
+      list: true,
+      type: "object",
+      ui: {
+        itemProps: (item) => {
+          return { label: item?.url };
+        },
+        defaultItem: {
+          url: "/pages/file",
+          localize: true,
+          label: "Link label",
+          description: "Some extra description about this link"
+        }
+      },
+      fields: [
+        {
+          name: "url",
+          label: "url",
+          description: "(format of /pages/filename, e.g /pages/dot) (locale code will be added automatically if localize is true)",
+          type: "string"
+        },
+        {
+          name: "isInteral",
+          label: "Is Internal Link",
+          description: "Is this page on this site? If so, some processing will be done to keep translations consistent.  Otherwise the url will be left alone",
+          type: "boolean"
+        },
+        {
+          name: "localize",
+          label: "localize",
+          description: "Localize this link? This will automatically translate the label and descriptions",
+          type: "boolean"
+        },
+        {
+          name: "label",
+          label: "label",
+          description: "Label for the link",
+          type: "string"
+        },
+        {
+          name: "icon",
+          type: "string",
+          label: "icon"
+        },
+        {
+          name: "description",
+          label: "description",
+          type: "string",
+          ui: {
+            component: "textarea"
+          }
+        },
+        {
+          name: "submenuItem",
+          label: "Submenu",
+          type: "object",
+          fields: [
+            {
+              name: "subItem",
+              type: "object",
+              list: true,
+              ui: {
+                itemProps: (item) => {
+                  return { label: item?.label };
+                },
+                defaultItem: {
+                  url: "/pages/file",
+                  localize: true,
+                  label: "Link label",
+                  description: "Some extra description about this link"
+                }
+              },
+              fields: [
+                {
+                  name: "url",
+                  label: "URL",
+                  type: "string"
+                },
+                {
+                  name: "isInteral",
+                  label: "Is Internal Link",
+                  description: "Is this page on this site? If so, some processing will be done to keep translations consistent.  Otherwise the url will be left alone",
+                  type: "boolean"
+                },
+                {
+                  name: "localize",
+                  label: "localize",
+                  description: "Localize this link? This will automatically translate the label and descriptions",
+                  type: "boolean"
+                },
+                {
+                  name: "label",
+                  label: "Submenu label",
+                  type: "string"
+                },
+                {
+                  name: "description",
+                  label: "Submenu Description",
+                  type: "string",
+                  ui: {
+                    component: "textarea"
+                  }
+                }
+              ]
+            },
+            {
+              name: "nestedMenu",
+              label: "Submenu Children",
+              description: "Used to nest another layer of menus",
+              type: "object",
+              list: true,
+              ui: {
+                itemProps: (item) => {
+                  return { label: item?.groupLabel };
+                }
+              },
+              fields: [
+                {
+                  name: "groupLabel",
+                  label: "Submenu Children Group Label",
+                  description: "Label for this group of menus",
+                  type: "string"
+                },
+                {
+                  name: "submenuChildren",
+                  label: "Nested Children for submenu",
+                  type: "object",
+                  list: true,
+                  ui: {
+                    itemProps: (item) => {
+                      return { label: item?.label };
+                    },
+                    defaultItem: {
+                      url: "/pages/filename",
+                      label: "title",
+                      description: "lorem desc;",
+                      localize: true
+                    }
+                  },
+                  fields: [
+                    {
+                      name: "url",
+                      label: "URL",
+                      type: "string"
+                    },
+                    {
+                      name: "isInteral",
+                      label: "Is Internal Link",
+                      description: "Is this page on this site? If so, some processing will be done to keep translations consistent.  Otherwise the url will be left alone",
+                      type: "boolean"
+                    },
+                    {
+                      name: "localize",
+                      label: "localize",
+                      description: "Localize this link? This will automatically translate the label and descriptions",
+                      type: "boolean"
+                    },
+                    {
+                      name: "label",
+                      label: "Submenu label",
+                      type: "string"
+                    },
+                    {
+                      name: "description",
+                      label: "Submenu Description",
+                      type: "string",
+                      ui: {
+                        component: "textarea"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      type: "string",
+      label: "sha256 hash",
+      name: "sha256",
+      description: "Generated programmatically with reference to the menu. Used for automatic translation."
+    }
+  ]
+};
+
 // tina/config.ts
 var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
 var config_default = defineConfig({
@@ -438,7 +708,12 @@ var config_default = defineConfig({
     }
   },
   schema: {
-    collections: [PageCollection, LocalesCollection]
+    collections: [
+      PageCollection,
+      LocalesCollection,
+      PartialCollection,
+      MenuCollection
+    ]
   }
 });
 export {
