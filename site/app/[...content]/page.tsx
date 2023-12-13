@@ -24,15 +24,22 @@ export async function generateStaticParams() {
       if (entry?.node?.id) {
         // if (entry?.node?.id.includes("")) continue;
         const parts = entry.node.id.split("content/");
+        // console.log({parts});
         const parsed = path.parse(entry?.node?.id);
-        let fileName = `${parts[0]}/${parsed.name}`; //locale/kebab-case-file
-        console.log({fileName});
-        if (parsed.name == "/home") {
-          fileName = parts[0]; //the locale /en /es
+        // console.log({parsed});
+        let fileName = `${parts[1]
+          .replace(".mdx", "")
+          .replace("/pages/", "/")}`; //locale/kebab-case-file
+        // console.log({filenameFirst: fileName});
+        if (fileName.includes("/home")) {
+          fileName = fileName.split("/")[0]; //the locale /en /es
         }
-        fileName = fileName.startsWith("/") ? fileName.slice(1) : fileName;
+
+        // console.log({filenameSecond: fileName});
+        const asArr = fileName.split("/").map((seg) => seg);
+        // console.log({asArr});
         slugs.push({
-          content: [fileName],
+          content: asArr,
         });
       }
     }
@@ -44,12 +51,12 @@ export async function generateStaticParams() {
 export default async function Page({params}: any) {
   // console.log({props});
   const {content} = params;
-  console.log({content});
+  // console.log({content});
   let relativePath: string = "";
   relativePath = decodeURIComponent(content[0]) + ".mdx";
   if (Array.isArray(content) && content.length == 1) {
     relativePath = `${content[0]}/pages/home.mdx`; // fetch home, but url segment is chopped to just be /localeCode
-    console.log({relativePath});
+    // console.log({relativePath});
   } else {
     relativePath =
       decodeURIComponent(`${content[0]}/pages/${content.slice(1).join("/")}`) +
