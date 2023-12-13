@@ -1,6 +1,6 @@
+export const dynamic = "force-static";
 export const dynamicParams = false; // true | false,
-export const revalidate = false;
-
+export const revalidate = "force-cache";
 import {PageServer} from "@/app/components/PageServer";
 import {client} from "@/tina/__generated__/databaseClient";
 import {PageQuery} from "@/tina/__generated__/types";
