@@ -11,6 +11,7 @@ import database from "@/tina/database";
 import {checkJwtValid} from "@/utils/auth";
 
 const isAuthorized = async (request: Request) => {
+  return true; //no auth
   console.log("checking auth!!");
   if (process.env.NODE_ENV === "development") {
     console.log("local dev auth permitted");

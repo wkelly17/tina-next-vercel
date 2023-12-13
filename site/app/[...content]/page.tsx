@@ -1,4 +1,3 @@
-export const dynamic = "force-static";
 export const dynamicParams = false; // true | false,
 export const revalidate = "force-cache";
 import {PageServer} from "@/app/components/PageServer";
