@@ -11,6 +11,9 @@ export async function GET(request: NextRequest) {
   if (!existingId) {
     return new Response(null, {
       status: 400,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   }
   let parsedCookie = JSON.parse(existingId.value);
@@ -22,10 +25,16 @@ export async function GET(request: NextRequest) {
     });
     return new Response(body, {
       status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   } else {
     return new Response(null, {
       status: 400,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
     });
   }
 }
