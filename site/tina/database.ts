@@ -18,7 +18,7 @@ export default isLocal
         owner: process.env.GITHUB_OWNER!,
         repo: process.env.GITHUB_REPO!,
         token: process.env.GITHUB_PERSONAL_ACCESS_TOKEN!,
-        rootPath: "/site",
+        rootPath: "site",
       }),
       databaseAdapter: new RedisLevel({
         redis: {
