@@ -59,7 +59,7 @@ export const Header: React.FC<HeaderProps> = ({headerMenu, lang, logo}) => {
       >
         <span className="w-40 inline-block">
           <Link href="/">
-            <Image src={logo} alt="WA logo" />
+            <Image src={logo} alt="WA logo" width={168} height={50} />
           </Link>
         </span>
         <ul className="flex list-none gap-4 p-0">

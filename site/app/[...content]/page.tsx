@@ -28,6 +28,7 @@ export async function generateStaticParams() {
         if (parsed.name == "/home") {
           fileName = parts[0]; //the locale /en /es
         }
+        fileName = fileName.startsWith("/") ? fileName.slice(1) : fileName;
         slugs.push({
           content: [fileName],
         });

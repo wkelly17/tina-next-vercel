@@ -140,7 +140,7 @@ class AuthProvider {
       );
       cookieManager.set(
         "sessionAuthCodeRequest",
-        authCodeRequest,
+        JSON.stringify(authCodeRequest),
         cookieDefaults
       );
       cookieManager.set(
@@ -150,7 +150,7 @@ class AuthProvider {
       );
       cookieManager.set(
         "sessionAuthCodeUrlRequest",
-        authCodeUrlRequest,
+        JSON.stringify(authCodeUrlRequest),
         cookieDefaults
       );
       return authCodeUrlResponse;

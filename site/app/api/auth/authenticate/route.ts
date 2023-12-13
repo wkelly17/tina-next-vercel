@@ -1,4 +1,3 @@
-"use server";
 import {NextRequest} from "next/server";
 import {cookies} from "next/headers";
 import {redirect} from "next/navigation";
@@ -10,7 +9,7 @@ export async function GET(request: NextRequest) {
   const existingId = cookieStore.get("oauthjwt");
   if (!existingId) {
     return new Response(null, {
-      status: 400,
+      status: 403,
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
@@ -31,7 +30,7 @@ export async function GET(request: NextRequest) {
     });
   } else {
     return new Response(null, {
-      status: 400,
+      status: 403,
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
