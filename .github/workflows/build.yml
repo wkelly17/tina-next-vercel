@@ -11,6 +11,9 @@ on:
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./site
     env:
       DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
       MS_REDIRECT_URI: ${{ secrets.MS_REDIRECT_URI }}
