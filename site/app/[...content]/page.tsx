@@ -5,7 +5,6 @@ import {PageServer} from "@/app/components/PageServer";
 import {client} from "@/tina/__generated__/databaseClient";
 import {PageQuery} from "@/tina/__generated__/types";
 import {prefixInternalLinksWithLangCode} from "@/utils/localizeLinks";
-import * as fs from "node:fs/promises";
 import path from "node:path";
 import locales from "@/siteConfig/locales.json";
 import {Footer} from "@components/Footer/footerServer";
