@@ -1,3 +1,6 @@
+export const dynamicParams = false; // true | false,
+export const revalidate = false;
+
 import {PageServer} from "@/app/components/PageServer";
 import {client} from "@/tina/__generated__/databaseClient";
 import {PageQuery} from "@/tina/__generated__/types";
